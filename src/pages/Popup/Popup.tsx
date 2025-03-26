@@ -1,15 +1,11 @@
-import React from 'react';
-import './Popup.css';
-import { useTabController } from '../../controllers';
+import React, { useState } from 'react';
+import { TabItem } from './components/tab-item';
 
 const Popup = () => {
-  const tabItem = useTabController();
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>{tabItem}d</p>
-      </header>
-    </div>
+    <>
+      <TabItem />
+    </>
   );
 };
 

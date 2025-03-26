@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import { TabItem } from '../models/tabItem';
 import { IPageContent } from '../pages/Content';
+import { TabManager } from '../models/tabManager';
 
 export const useTabController = () => {
   const [pageInfo, setPageInfo] = useState<IPageContent>();
+  const [tabManager, setTabManage] = useState<TabManager>();
 
-  console.log('page infod', pageInfo);
-  // useEffect(() => {
-  //   if (pageInfo) {
-  //     const tabItem = new TabItem(pageInfo.url, pageInfo.title);
-  //   } else {
-  //     throw new Error('Oops there is no page info for some reason...');
-  //   }
-  // }, [pageInfo]);
+  useEffect(() => {
+    if (pageInfo) {
+      const currentTabItem = new TabItem(pageInfo.url, pageInfo.title);
+      setTabManage(new TabManager(currentTabItem));
+    }
+  }, [pageInfo]);
 
   useEffect(() => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -35,5 +35,7 @@ export const useTabController = () => {
     });
   }, []);
 
-  return 'test';
+  return {
+    tabManager,
+  };
 };

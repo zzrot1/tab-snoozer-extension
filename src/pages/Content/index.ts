@@ -1,6 +1,4 @@
-if (process.env.NODE_ENV !== 'production') {
-  console.log('Content script works!');
-}
+console.log('Content script works!');
 
 export interface IPageContent {
   title: string;
